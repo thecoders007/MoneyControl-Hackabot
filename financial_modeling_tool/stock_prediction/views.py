@@ -8,6 +8,7 @@ from nasdaq_stock_quote import Share
 import requests
 import json
 
+from nsetools import Nse
 
 # Create your views here.
 
@@ -66,64 +67,74 @@ def logout(request):
 
 
 def main(request):
-	a =['AAPL','MSFT','YHOO'] 
-	# a_prev = []
-	# a_volume = []
-	# a_perct = []
-	# a_high = []
-	# a_low = []
-	# a_price = []
-	# for i in a:
-	# 	share = Share(i)
-	# 	print share,"asdasdads"
-	# 	prev = share.get_prev_close()
-	# 	price = share.get_price()
-	# 	name = share.get_name()
-	# 	volume = share.get_volume()
-	# 	perct = share.get_percent_change()
-	# 	high = share.get_day_high()
-	# 	low = share.get_day_low()
-	# 	perct = float(perct)
-	# 	perct = perct*100
-	# 	perct = str(perct)
-	# 	print prev
-	# 	# a_prev.append(prev)
-	# 	# a_volume.append(volume)
-	# 	# a_perct.append(perct)
-	# 	# a_high.append(high)
-	# 	# a_low.append(low)
-	# 	print name
+	nse = Nse()
 
-	# print a_prev
-	# loop = zip(a,a_prev,a_volume,a_price,a_low,a_high,a_perct)
-	# print loop
+	top_gainers = nse.get_top_gainers()
+	top_losers = nse.get_top_losers()
+	r = requests.get('https://www.quandl.com/api/v3/datasets/NSE/NIFTY_50.json?api_key=oqf4vFLPo8MrPBGXVjki')
+	nifty = r.json()
 
-	prev = []
-	high = []
-	low = []
-	close = []
-	volume = []
+	nifty_price = []
+	nifty_date = []
 
-	for i in a:
-			r = requests.get('https://www.quandl.com/api/v3/datasets/EOD/AAPL.json?api_key=oqf4vFLPo8MrPBGXVjki')
-			stock_json = r.json()
-			# s_json.append(stock_json)
-			print stock_json['dataset']['data'][0]
-			prev.append(stock_json['dataset']['data'][0][1])
-			high.append(stock_json['dataset']['data'][0][2])
-			low.append(stock_json['dataset']['data'][0][3])
-			close.append(stock_json['dataset']['data'][0][4])
-			volume.append(stock_json['dataset']['data'][0][5])
+	count = 0
+	for i in nifty['dataset']['data']:
 
-	# print s_json
+		nifty_date.append(i[0])	
+		nifty_price.append(i[1])
 
-	# print stock_json
+		if count == 30:
+			break
+		else:
+			count = count + 1
 
-	# s_json.encode("utf-8")
-	loop = zip(a,prev,high,low,close,volume)
-	print loop
+	print(nifty_date)
 
-	return render(request,'mainpage.html',{'loop' : loop})
+	w_symbol = []
+	l_symbol = []
+	w_price = []
+	l_price = []
+	w_hprice = []
+	l_hprice = []
+	w_lprice = []
+	l_lprice = []
+	w_oprice = []
+	l_oprice = []
+
+	count = 0
+	for i in top_gainers:
+		w_symbol.append(i['symbol'])
+		w_price.append(i['ltp'])
+		w_hprice.append(i['highPrice'])
+		w_lprice.append(i['lowPrice'])
+		w_oprice.append(i['openPrice'])
+
+		if count == 2:
+			break
+		else:
+			count = count + 1
+
+
+	count = 0
+	for i in top_losers:
+		l_symbol.append(i['symbol'])
+		l_price.append(i['ltp'])
+		l_hprice.append(i['highPrice'])
+		l_lprice.append(i['lowPrice'])
+		l_oprice.append(i['openPrice'])
+
+		if count == 2:
+			break
+		else:
+			count = count + 1
+
+	
+	loop1 = zip(w_symbol,w_price,w_hprice,w_lprice,w_oprice)
+	loop2 = zip(l_symbol,l_price,l_hprice,l_lprice,l_oprice)
+
+
+	return render(request,'mainpage.html',{'loop1':loop1,'loop2':loop2,
+	 'nifty_price' : nifty_price, 'nifty_date' : nifty_date})
 
 
 def classes(request):

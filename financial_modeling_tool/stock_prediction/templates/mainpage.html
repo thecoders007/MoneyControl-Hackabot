@@ -1,5 +1,8 @@
 {% extends 'base.html' %} {% load static %} {% block body_block %}
 <!-- google font -->
+<style type="text/css" media="screen">
+hr { display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin: 1em 0; padding: 0; }    
+</style>
 
 
 <!-- icons -->
@@ -50,72 +53,58 @@
     // ctx.height = 400
     // ctx.width = 700
 
+    // var myChart = new Chart(ctx, {
+    //     type: 'line',
+    //     data: {
+    //         labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+    //         datasets: [{
+    //             label: '# of Votes',
+    //             data: [12, 19, 3, 5, 2, 3],
+    //             backgroundColor: [
+    //                 'rgba(255, 99, 132, 0.2)',
+    //                 'rgba(54, 162, 235, 0.2)',
+    //                 'rgba(255, 206, 86, 0.2)',
+    //                 'rgba(75, 192, 192, 0.2)',
+    //                 'rgba(153, 102, 255, 0.2)',
+    //                 'rgba(255, 159, 64, 0.2)'
+    //             ],
+    //             borderColor: [
+    //                 'rgba(255,99,132,1)',
+    //                 'rgba(54, 162, 235, 1)',
+    //                 'rgba(255, 206, 86, 1)',
+    //                 'rgba(75, 192, 192, 1)',
+    //                 'rgba(153, 102, 255, 1)',
+    //                 'rgba(255, 159, 64, 1)'
+    //             ],
+    //             borderWidth: 1
+    //         }]
+    //     },
+    //     options: {
+    //         scales: {
+    //             yAxes: [{
+    //                 ticks: {
+    //                     beginAtZero: true
+    //                 }
+    //             }]
+    //         }
+    //     }
+    // });
+
+    // console.log({{nifty_date}})
+
+    var price = {{ nifty_price }}
+    var date = {{ nifty_date }}
+
+
+    console.log(date);
+
     var myChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+            labels: date,
             datasets: [{
                 label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255,99,132,1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            }
-        }
-    });
-
-
-
-    var myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-            datasets: [{
-                label: '# of Votes',
-                data: [1, 14, 32, 5, 2, 3, 2, 19, 3, 5, 2, 3],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255,99,132,1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }, {
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
+                data: price,
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
@@ -147,22 +136,16 @@
     });
 </script>
 
+<h2>Top Gainers</h2>
+<hr width="100%">
 <div class="row">
-    {% for a,b,c,d,e,f in loop %}
+    {% for a,b,c,d,e in loop1 %}
     <div class="col-md-4 col-sm-12 col-xs-12">
         <div class="white-box border-gray">
             <h3 class="box-title">
                 <small class="pull-right m-t-10 text-success">
                     <!-- <i class="fa fa-sort-asc"></i> --> {{b}} </small> {{a}}</h3>
             <div class="stats-row">
-                <div class="stat-item">
-                    <h6>Volume</h6>
-                    <b>{{f}}</b>
-                </div>
-                <div class="stat-item">
-                    <h6>Previous Close</h6>
-                    <b>{{e}}</b>
-                </div>
                 <div class="stat-item">
                     <h6>Day High</h6>
                     <b>{{c}}</b>
@@ -171,51 +154,40 @@
                     <h6>Day Low</h6>
                     <b>{{d}}</b>
                 </div>
+                <div class="stat-item">
+                    <h6>Day Open</h6>
+                    <b>{{e}}</b>
+                </div>
             </div>
         </div>
     </div>
     {% endfor %}
-    <div class="col-md-4 col-sm-12 col-xs-12">
-        <div class="white-box border-gray">
-            <h3 class="box-title">
-                <small class="pull-right m-t-10 text-danger">
-                    <i class="fa fa-sort-desc"></i> 34% Low then last month</small>Site Traffic</h3>
-            <div class="stats-row">
-                <div class="stat-item">
-                    <h6>Overall Growth</h6>
-                    <b>40.40%</b>
-                </div>
-                <div class="stat-item">
-                    <h6>Montly</h6>
-                    <b>55.40%</b>
-                </div>
-                <div class="stat-item">
-                    <h6>Day</h6>
-                    <b>4.50%</b>
-                </div>
-            </div>
-        </div>
-    </div>
+
+
+<h2 style="margin-left: 15px;">Top Losers</h2>
+<hr width="100%">
+    {% for a,b,c,d,e in loop2 %}
     <div class="col-md-4 col-sm-12 col-xs-12">
         <div class="white-box border-gray">
             <h3 class="box-title">
                 <small class="pull-right m-t-10 text-success">
-                    <i class="fa fa-sort-asc"></i> 18% High then last month</small>Site Traffic</h3>
+                    <!-- <i class="fa fa-sort-asc"></i> --> {{b}} </small> {{a}}</h3>
             <div class="stats-row">
                 <div class="stat-item">
-                    <h6>Overall Growth</h6>
-                    <b>40.40%</b>
+                    <h6>Day High</h6>
+                    <b>{{c}}</b>
                 </div>
                 <div class="stat-item">
-                    <h6>Montly</h6>
-                    <b>55.40%</b>
+                    <h6>Day Low</h6>
+                    <b>{{d}}</b>
                 </div>
                 <div class="stat-item">
-                    <h6>Day</h6>
-                    <b>4.50%</b>
+                    <h6>Day Open</h6>
+                    <b>{{e}}</b>
                 </div>
             </div>
         </div>
     </div>
+    {% endfor %}
 </div>
 {% endblock %}
