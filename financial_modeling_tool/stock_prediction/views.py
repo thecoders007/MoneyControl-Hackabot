@@ -71,4 +71,4 @@ def classes(request):
 
 
 def compare(request):
-	return render(request)
+	return render(request,'compare.html')
