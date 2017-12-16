@@ -148,23 +148,28 @@
 </script>
 
 <div class="row">
+    {% for a,b,c,d,e,f in loop %}
     <div class="col-md-4 col-sm-12 col-xs-12">
         <div class="white-box border-gray">
             <h3 class="box-title">
                 <small class="pull-right m-t-10 text-success">
-                    <i class="fa fa-sort-asc"></i> 34% High then last month</small> Site Traffic</h3>
+                    <!-- <i class="fa fa-sort-asc"></i> --> {{b}} </small> {{a}}</h3>
             <div class="stats-row">
                 <div class="stat-item">
-                    <h6>Overall Growth</h6>
-                    <b>40.40%</b>
+                    <h6>Volume</h6>
+                    <b>{{f}}</b>
                 </div>
                 <div class="stat-item">
-                    <h6>Montly</h6>
-                    <b>55.40%</b>
+                    <h6>Previous Close</h6>
+                    <b>{{e}}</b>
                 </div>
                 <div class="stat-item">
-                    <h6>Day</h6>
-                    <b>4.50%</b>
+                    <h6>Day High</h6>
+                    <b>{{c}}</b>
+                </div>
+                <div class="stat-item">
+                    <h6>Day Low</h6>
+                    <b>{{d}}</b>
                 </div>
             </div>
             <div id="sparkline13">
@@ -172,6 +177,7 @@
             </div>
         </div>
     </div>
+    {% endfor %}
     <div class="col-md-4 col-sm-12 col-xs-12">
         <div class="white-box border-gray">
             <h3 class="box-title">
