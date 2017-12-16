@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+ {% block content %}
+ <style type="text/css">
+   
+  .right_col{
+    height:1000px;
+  }
+ .heading1 {
+    border-bottom: 1px solid #aaa;
+}
+ </style>
+        <!-- page content -->
+        <div class="right_col" role="main">
+          <!-- top tiles -->
+         
+          <!-- /top tiles -->
+          <div class="section-title">
+                        <h1 class="heading1">
+                          {{stock.name}}
+                        </h1>
+                        <br />
+
+                      </div>
+          <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="dashboard_graph">
+
+                <div class="row x_title">
+                  <div class="col-md-6">
+                    <h3>Last 7 days close price</h3>
+                  </div>
+                 <!--  <div class="col-md-6">
+                    <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
+                      <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+                      <span>December 30, 2014 - January 28, 2015</span> <b class="caret"></b>
+                    </div>
+                  </div> -->
+                </div>
+
+                <div class="col-md-12 col-sm-12 col-xs-12 graph">
+                  <div id="chart_plot_00" class="demo-placeholder"></div>
+                </div>
+                
+                <div class="clearfix"></div>
+              </div>
+            </div>
+
+          </div>
+          <br />
+
+          
+        </div>
+        <!-- /page content -->
+
+
+
+
+    <!-- Highcharts -->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script type="text/javascript">
+       var json = unescape("{{stock_detail | safe | escapejs}}");
+var json = JSON.parse(json);
+  console.log("json",json);
+  var stock = [];
+  Object.keys(json)
+      .sort()
+      .forEach(function(v, i) {
+          console.log(v, json[v]);
+          stock.push([v,json[v]]);
+       });
+  /*var stock = Object.keys(json).map(function(key) {
+  return [key, json[key]];
+});*/
+  console.log(stock)
+  console.log(stock[stock.length-1]);
+  var detail=[];
+  var dates=[];
+  var close=[];
+  for(var i=1;i<8;i++){
+    detail.push(stock[stock.length-i])
+  }
+  console.log(detail[0][0]);
+  for(var i=0;i<7;i++){
+    dates.push(detail[i][0]);
+  }
+  for(var i=0;i<7;i++){
+    close.push(+detail[i][1]["4. close"]);
+  }
+  dates.reverse()
+  close.reverse()
+  console.log(dates);
+      Highcharts.chart('chart_plot_00', {
+    chart: {
+        type: 'line'
+    },
+    title: {
+        text: ''
+    },
+        xAxis: {
+        categories: dates
+    },
+    yAxis: {
+        title: {
+            text: 'Close Price (in $)'
+        }
+    },
+    plotOptions: {
+        line: {
+            dataLabels: {
+                enabled: false
+            },
+            enableMouseTracking: true
+        }
+    },
+    credits: {
+      enabled: false
+  },
+  exporting: {
+         enabled: false
+},
+    series: [{
+        name: '{{stock.name}}',
+        data: close
+    }]
+});
+    </script>
+  {% endblock %}
