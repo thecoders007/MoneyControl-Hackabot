@@ -1,169 +1,159 @@
-{% load staticfiles %}
+{% load static %}
+<!doctype html>
+<html lang="en" class="no-js">
+<style type="text/css">
+  @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
-<!DOCTYPE html>
-<html >
+.login-page {
+  width: 360px;
+  padding: 8% 0 0;
+  margin: auto;
+}
+.form {
+  position: relative;
+  z-index: 1;
+  background: #FFFFFF;
+  max-width: 360px;
+  margin: 0 auto 100px;
+  padding: 45px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+.form input {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+.form button {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #4CAF50;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+.form button:hover,.form button:active,.form button:focus {
+  background: #43A047;
+}
+.form .message {
+  margin: 15px 0 0;
+  color: #b3b3b3;
+  font-size: 12px;
+}
+.form .message a {
+  color: #4CAF50;
+  text-decoration: none;
+}
+.form .register-form {
+  display: none;
+}
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 300px;
+  margin: 0 auto;
+}
+.container:before, .container:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.container .info {
+  margin: 50px auto;
+  text-align: center;
+}
+.container .info h1 {
+  margin: 0 0 15px;
+  padding: 0;
+  font-size: 36px;
+  font-weight: 300;
+  color: #1a1a1a;
+}
+.container .info span {
+  color: #4d4d4d;
+  font-size: 12px;
+}
+.container .info span a {
+  color: #000000;
+  text-decoration: none;
+}
+.container .info span .fa {
+  color: #EF3B3A;
+}
+body {
+  background: #76b852; /* fallback for old browsers */
+  background: -webkit-linear-gradient(right, #76b852, #8DC26F);
+  background: -moz-linear-gradient(right, #76b852, #8DC26F);
+  background: -o-linear-gradient(right, #76b852, #8DC26F);
+  background: linear-gradient(to left, #76b852, #8DC26F);
+  font-family: "Roboto", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;      
+}
+  
+</style>
 <head>
-  <meta charset="UTF-8">
-  <title>Sign-Up/Login Form</title>
-  <link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <meta charset="UTF-8" />
+  <title>Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'style.css' %}" />
+  <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+  <!-- remember, jQuery is completely optional -->
+  <!-- <script type='text/javascript' src='js/jquery-1.11.1.min.js'></script> -->
+  <script type='text/javascript' src="{% static 'jquery.particleground.js' %}"></script>
+  <!-- <script type='text/javascript' src="{% static 'jquery.particleground.min.js' %}"></script> -->
 
-
-      <link rel="stylesheet" href="{% static 'css/style.css' %}">
-<script type="text/javascript">
-  window.onload = function () {
-
-    var dps = []; // dataPoints
-
-    var chart = new CanvasJS.Chart("chartContainer",{
-
-      data: [{
-        type: "line",
-        dataPoints: dps
-      }]
-    });
-
-    var xVal = 0;
-    var yVal = 100;
-    var updateInterval = 100;
-    var dataLength = 500; // number of dataPoints visible at any point
-
-    var updateChart = function (count) {
-      count = count || 1;
-      // count is number of times loop runs to generate random dataPoints.
-
-      for (var j = 0; j < count; j++) {
-        yVal = yVal +  Math.round(5 + Math.random() *(-5-5));
-        dps.push({
-          x: xVal,
-          y: yVal
-        });
-        xVal++;
-      };
-      if (dps.length > dataLength)
-      {
-        dps.shift();
-      }
-
-      chart.render();
-
-    };
-
-    // generates first set of dataPoints
-    updateChart(dataLength);
-
-    // update chart after specified time.
-    setInterval(function(){updateChart()}, updateInterval);
-
-  }
-  </script>
-  <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-
+  <script type='text/javascript' src="{% static 'demo.js' %}"></script>
 </head>
 
 <body>
-<div id="log">
 
-
+<div id="particles">
+  <div id="intro">
+    <div class="login-page">
   <div class="form">
-
-      <ul class="tab-group">
-        <li class="tab active"><a href="#signup">Sign Up</a></li>
-        <li class="tab"><a href="#login">Log In</a></li>
-      </ul>
-
-      <div class="tab-content">
-        <div id="signup">
-          <h1>Sign Up for Free</h1>
-
-          <form enctype="multipart/form-data" action="/register/" method="post">
-
-          {% csrf_token %}
-
-          <div class="top-row">
-            <div class="field-wrap">
-              <label>
-                First Name<span class="req">*</span>
-              </label>
-              <input type="text" name="fname" required autocomplete="off" />
-            </div>
-
-            <div class="field-wrap">
-              <label>
-                Last Name<span class="req">*</span>
-              </label>
-              <input type="text" name="lname" required autocomplete="off"/>
-            </div>
-          </div>
-
-          <div class="field-wrap">
-            <label>
-              Email Address<span class="req">*</span>
-            </label>
-            <input type="email" name="email" required autocomplete="off"/>
-          </div>
-
-          <div class="field-wrap">
-            <label>
-              Set A Password<span class="req">*</span>
-            </label>
-            <input type="password" name="password" required autocomplete="off"/>
-          </div>
-
-          <div class="field-wrap">
-            
-            <input type="file" name="pic" accept="image/*">
-            <label>
-              Profile Picture<span class="req"></span>
-            </label>
-          </div>
-
-
-  
-
-          <button type="submit" class="button button-block"/>Get Started</button>
-
-          </form>
-
-        </div>
-
-        <div id="login">
-          <h1>Welcome Back!</h1>
-          {{context}}
-          <form action="./" method="post">
-          {% csrf_token %}
-
-            <div class="field-wrap">
-            <label>
-              Email Address<span class="req">*</span>
-            </label>
-            <input type="email" name="email" required autocomplete="off"/>
-          </div>
-
-          <div class="field-wrap">
-            <label>
-              Password<span class="req">*</span>
-            </label>
-            <input type="password" name="password" required autocomplete="off"/>
-          </div>
-
-          <p class="forgot"><a href="#">Forgot Password?</a></p>
-
-          <button class="button button-block"/>Log In</button>
-
-          </form>
-
-        </div>
-
-      </div><!-- tab-content -->
-
-</div> <!-- /form -->
-<div id="chartContainer" style="height: 100%; width:100%;" class="chartcontainer">
-
+   <h2 style="color:black;">Log In</h2>
+    <div style="color:black;">{{error}}</div>
+   
+    <form class="login-form" action="/login/" method="POST">
+    {% csrf_token %}
+      <input type="text" placeholder="email" name="email"/>
+      <input type="password" placeholder="password" name="password"/>
+<button type="submit">Login</button>     
+ <p class="message">Not registered? <a href="/register/">Create an account</a></p>
+    </form>
   </div>
-  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-
-    <script src="{% static 'js/index.js' %}"></script>
 </div>
-</body>
+  </div>
+</div>
+
+
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
