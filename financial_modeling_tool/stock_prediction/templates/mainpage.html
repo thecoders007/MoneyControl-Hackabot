@@ -50,6 +50,7 @@ hr { display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin:
 <script>
 
     var ctx = document.getElementById("myChart");
+    console.log(ctx);
     // ctx.height = 400
     // ctx.width = 700
 
@@ -93,10 +94,11 @@ hr { display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin:
     // console.log({{nifty_date}})
 
     var price = {{ nifty_price }}
-    var date = {{ nifty_date }}
+    var date = unescape("{{ nifty_date | safe | escapejs }}")
+    date = JSON.parse(date)
 
 
-    console.log(date);
+    console.log(date,"asdasd");
 
     var myChart = new Chart(ctx, {
         type: 'line',

@@ -132,6 +132,7 @@ def main(request):
 	loop1 = zip(w_symbol,w_price,w_hprice,w_lprice,w_oprice)
 	loop2 = zip(l_symbol,l_price,l_hprice,l_lprice,l_oprice)
 
+	nifty_date = json.dumps(nifty_date)
 
 	return render(request,'mainpage.html',{'loop1':loop1,'loop2':loop2,
 	 'nifty_price' : nifty_price, 'nifty_date' : nifty_date})
