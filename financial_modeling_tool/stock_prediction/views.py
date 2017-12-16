@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth import logout as auth_logout
+from django.contrib.auth import login as auth_login
 from django.http import HttpResponse
 
 
@@ -26,7 +27,7 @@ def register(request):
 		user.save()
 		user = authenticate(username = email, password = password1)
 		if user:
-			login(user)
+			auth_login(request, user)
 			return redirect('/main/')
 		
 	else:
@@ -42,7 +43,7 @@ def login(request):
 		password = request.POST['password']
 		user = authenticate(username = email, password = password)
 		if user:
-			login(request)
+			auth_login(request, user)
 			return redirect('/main/')
 		else:
 			return render(request, 'login.html',{'context' : 'Wrong username or password'})
@@ -62,7 +63,7 @@ def logout(request):
 
 
 def main(request):
-	return render(request)
+	return render(request,'disease.html')
 
 
 def classes(request):
