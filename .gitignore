@@ -99,3 +99,9 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+
+#my_git_ignore
+*.pyc
+migrations
+db.sqlite3
