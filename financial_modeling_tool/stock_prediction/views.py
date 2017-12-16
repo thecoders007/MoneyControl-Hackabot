@@ -7,6 +7,9 @@ from django.http import HttpResponse
 from nasdaq_stock_quote import Share
 import requests
 import json
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+
 
 from nsetools import Nse
 
@@ -139,8 +142,95 @@ def main(request):
 
 
 def classes(request):
-	return render(request,'classes.html')
+	nse = Nse()
+	a = ['ABB','DMART','BHEL','TITAN','TATAPOWER','INDIGO','IDEA','MRF','PNB','GODREJCP','LICHSGFIN','JSWSTEEL']
+	price = []
+	hprice = []
+	lprice = []
+	oprice = []
+	for i in a:
+		 q = nse.get_quote(i)
+		 price.append(q['averagePrice'])
+		 hprice.append(q['dayHigh'])
+		 lprice.append(q['dayLow'])
+		 oprice.append(q['closePrice'])
+	loop = zip(a,price,hprice,lprice,oprice)
+
+
+
+	return render(request,'classes.html',{'loop' : loop})
 
 
 def compare(request):
 	return render(request,'compare.html')
+
+
+
+def add_stock(request):
+	a = json.loads(request.body.decode('utf-8'))
+	print (a)
+
+	r = requests.get('https://www.quandl.com/api/v3/datasets/NSE/'+a['stock']+'.json?api_key=oqf4vFLPo8MrPBGXVjki')
+	nifty = r.json()
+
+
+	nifty_price = []
+	nifty_date = []
+
+	count = 0
+	for i in nifty['dataset']['data']:
+
+		nifty_date.append(i[0])	
+		nifty_price.append(i[1])
+
+		if count == 60:
+			break
+		else:
+			count = count + 1
+
+	pnifty_price = []
+	pnifty_date = []
+
+	for i in range(0,29):
+		pnifty_date.append(i)
+		pnifty_price.append(i)
+
+
+	json_data = {
+		'nifty_price' : nifty_price,
+		'nifty_date' : nifty_date,
+		'pnifty_price' : pnifty_price,
+		'pnifty_date' : pnifty_date
+	}
+
+
+	return JsonResponse({'data':json_data})
+
+
+
+@csrf_exempt
+def respond_chat(request):
+	if request.method == 'POST':
+		a = json.loads((request.body.decode("utf-8")))
+		print (a)
+
+
+		# b = (a["result"]["parameters"]["Book"])
+		# c = (a["result"]["parameters"]["City"])
+		# books = str(Book.objects.filter(book1 = b,city = c))
+		# words = books.split()
+		# print(a)
+		# locname = words[6] 
+		# libname = words[7]
+		# libname = libname.strip('>]>')
+		# print(locname)
+		# print(libname)
+		# finalstring = "The queried book is available in " + libname + " library at " + locname
+		# print(finalstring)
+		# return JsonResponse({	
+		#       "speech": finalstring,
+		#       "messages": [
+		#         {
+		#           "type": 0,
+		#           "speech": finalstring
+		#         }]})

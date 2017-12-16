@@ -10,4 +10,6 @@ urlpatterns = [
     url(r'^main/$', views.main),
     url(r'^classes/$', views.classes),
     url(r'^compare/$', views.compare),
+    url(r'^add-stock/$', views.add_stock),
+    url(r'^response/$', views.respond_chat),
 ]
