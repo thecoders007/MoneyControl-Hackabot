@@ -1,0 +1,248 @@
+{% extends 'base.html' %} {% load static %} {% block body_block %}
+<!-- google font -->
+
+
+<!-- icons -->
+<link href="js/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
+<link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet" type="text/css" />
+
+<!--bootstrap -->
+<link href="{% static 'js/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'js/bootstrap-switch/css/bootstrap-switch.min.css' %}" rel="stylesheet" type="text/css" />
+
+<!-- morris chart -->
+<link href="{% static 'js/morris/morris.css' %}" rel="stylesheet" type="text/css" />
+
+<!-- Theme Styles -->
+<link href="{% static 'css/theme_style.css' %}" rel="stylesheet" id="rt_style_components" type="text/css" />
+<link href="{% static 'css/plugins.min.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'css/responsive.css' %}" rel="stylesheet" type="text/css" />
+<!-- favicon -->
+<link rel="shortcut icon" href="img/favicon.ico" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min.js"></script>
+<div class="row">
+    <!-- <div class="col-md-offset-2 col-md-10">
+        <canvas id="myChart"></canvas>
+    </div> -->
+    <div >
+        <div class="card card-topline-aqua">
+            <div class="card-head">
+                <header>STOCKS</header>
+                <div class="tools">
+                    <a class="fa fa-repeat btn-color box-refresh" href="javascript:;"></a>
+                    <a class="t-collapse btn-color fa fa-chevron-down" href="javascript:;"></a>
+                    <a class="t-close btn-color fa fa-times" href="javascript:;"></a>
+                </div>
+            </div>
+            <div class="card-body no-padding height-9">
+                <div class="row">
+                    <canvas id="myChart" width="1000" height="400"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+    var ctx = document.getElementById("myChart");
+    // ctx.height = 400
+    // ctx.width = 700
+
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+            datasets: [{
+                label: '# of Votes',
+                data: [12, 19, 3, 5, 2, 3],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+
+
+
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+            datasets: [{
+                label: '# of Votes',
+                data: [1, 14, 32, 5, 2, 3, 2, 19, 3, 5, 2, 3],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }, {
+                label: '# of Votes',
+                data: [12, 19, 3, 5, 2, 3],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+</script>
+
+<div class="row">
+    <div class="col-md-4 col-sm-12 col-xs-12">
+        <div class="white-box border-gray">
+            <h3 class="box-title">
+                <small class="pull-right m-t-10 text-success">
+                    <i class="fa fa-sort-asc"></i> 34% High then last month</small> Site Traffic</h3>
+            <div class="stats-row">
+                <div class="stat-item">
+                    <h6>Overall Growth</h6>
+                    <b>40.40%</b>
+                </div>
+                <div class="stat-item">
+                    <h6>Montly</h6>
+                    <b>55.40%</b>
+                </div>
+                <div class="stat-item">
+                    <h6>Day</h6>
+                    <b>4.50%</b>
+                </div>
+            </div>
+            <div id="sparkline13">
+                <canvas width="378" height="50" style="display: inline-block; width: 378px; height: 50px; vertical-align: top;"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 col-sm-12 col-xs-12">
+        <div class="white-box border-gray">
+            <h3 class="box-title">
+                <small class="pull-right m-t-10 text-danger">
+                    <i class="fa fa-sort-desc"></i> 34% Low then last month</small>Site Traffic</h3>
+            <div class="stats-row">
+                <div class="stat-item">
+                    <h6>Overall Growth</h6>
+                    <b>40.40%</b>
+                </div>
+                <div class="stat-item">
+                    <h6>Montly</h6>
+                    <b>55.40%</b>
+                </div>
+                <div class="stat-item">
+                    <h6>Day</h6>
+                    <b>4.50%</b>
+                </div>
+            </div>
+            <div id="sparkline15">
+                <canvas width="378" height="50" style="display: inline-block; width: 378px; height: 50px; vertical-align: top;"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 col-sm-12 col-xs-12">
+        <div class="white-box border-gray">
+            <h3 class="box-title">
+                <small class="pull-right m-t-10 text-success">
+                    <i class="fa fa-sort-asc"></i> 18% High then last month</small>Site Traffic</h3>
+            <div class="stats-row">
+                <div class="stat-item">
+                    <h6>Overall Growth</h6>
+                    <b>40.40%</b>
+                </div>
+                <div class="stat-item">
+                    <h6>Montly</h6>
+                    <b>55.40%</b>
+                </div>
+                <div class="stat-item">
+                    <h6>Day</h6>
+                    <b>4.50%</b>
+                </div>
+            </div>
+            <div id="sparkline14">
+                <canvas width="378" height="50" style="display: inline-block; width: 378px; height: 50px; vertical-align: top;"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{% static 'js/jquery.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/bootstrap/js/bootstrap.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/jquery.blockui.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/bootstrap-switch/js/bootstrap-switch.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/moment.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/counterup/jquery.waypoints.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/counterup/jquery.counterup.min.js' %}" type="text/javascript"></script>
+
+<script src="{% static 'js/jquery.slimscroll.js' %}"></script>
+<script src="{% static 'js/app.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/layout.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/sparkline/jquery.sparkline.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/sparkline/sparkline-data.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/jquery.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/bootstrap/js/bootstrap.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/jquery.blockui.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/bootstrap-switch/js/bootstrap-switch.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/counterup/jquery.waypoints.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/counterup/jquery.counterup.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/jquery.slimscroll.js' %}"></script>
+<script src="{% static 'js/app.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/layout.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/chart-js/Chart.bundle.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/chart-js/utils.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/chart-js/home-data.js' %}" type="text/javascript"></script> {% endblock %}

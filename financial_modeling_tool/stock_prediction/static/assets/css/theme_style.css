@@ -1385,7 +1385,7 @@ form.search-form-opened .btn.submit {
     display: table
 }
 .page-header-fixed .page-container {
-    margin-top: 50px
+    /* margin-top: 50px */
 }
 .page-header .top-menu .dropdown-quick-sidebar-toggler>.dropdown-toggle {
     padding: 19px 10px 10px;

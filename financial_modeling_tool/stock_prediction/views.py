@@ -63,7 +63,7 @@ def logout(request):
 
 
 def main(request):
-	return render(request,'disease.html')
+	return render(request,'mainpage.html')
 
 
 def classes(request):
