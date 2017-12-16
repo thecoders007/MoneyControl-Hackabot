@@ -127,8 +127,8 @@ def main(request):
 
 
 def classes(request):
-	return render(request)
+	return render(request,'classes.html')
 
 
 def compare(request):
-	return render(request)
+	return render(request,'compare.html')
