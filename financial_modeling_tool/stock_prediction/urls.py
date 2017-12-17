@@ -14,6 +14,6 @@ urlpatterns = [
     url(r'^response/$', views.respond_chat),
     url(r'^learn/$', views.learn),
     url(r'^detail/(?P<p>[\w\-\_]+)/$',views.detail),
-
+    url(r'^news/$', views.news),
 
 ]

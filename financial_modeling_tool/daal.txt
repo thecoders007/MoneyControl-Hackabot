@@ -1,0 +1,24 @@
+<h3>Stock
+</h3><p>A proportional share of ownership of a corporation.  A company may offer 100 shares of stock and if you own 10, you have 10% ownership of the company.
+</p><h3>Mutual fund
+</h3><p>An investment that is made up of a pool of funds from multiple investors who want to invest in securities like stocks, bonds, money market accounts, and other assets.  Mutual funds are operated by money managers who invest capital and try to create gains for the investors.
+</p><h3>Liquidity
+</h3><p>The ability of an asset to be converted to cash quickly without sacrificing value or giving a discount on the price.
+</p><h3>401(k) Plan
+</h3><p> A qualified retirement plan through an employer to which eligible employees can make salary deferral (salary reduction) contributions on a post-tax and/or pretax basis.
+</p><h3>Capital Gain
+</h3><p>A capital gain is realized when an investment’s selling price exceeds its purchase price.
+</p><h3>Bond
+</h3><p>A debt instrument used by corporations, governments (including Federal, State and City) and many other institutions that are used to generate capital.  The investor does not become part owner like a shareholder, but does have a greater claim on the issuer’s income than a shareholder
+</p><h3>Compound Interest
+</h3><p>Interest that is calculated not just on the initial principal but also on the accumulated interest from previous periods.  As interest is added back to the principal, the rate of return applies to the entire balance, making the balance grow even faster than simple interest (simple interest is when the interest is applied only the initial principal, not the accumulated interest as well).
+</p><p>Here's an example: If you start off with $100 earning 7% interest annually, after your first year you'll have $107. The next year, you'll be earning 7% interest on $107 and not $100 (you'll earn $7.49 instead of $7).
+</p><h3>Bankruptcy
+</h3><p>A legal proceeding in which a debtor’s assets are liquidated and the debtor is released from further liability.
+</p><h3>Debt
+</h3><p>An amount owed to a person or corporation for funds borrowed.
+</p><h3>Inflation
+</h3><p>The gradual increase or rise in the price of goods of a period of time.
+</p><h3>Recession
+</h3><p>An economic condition defined by a decline in GDP for two or more consecutive quarters.  During a recession, the stock market usually drops, unemployment increases, and the housing market declines.
+</p>

@@ -60,6 +60,39 @@
 </div>
 
 
+
+
+<!-- <div class="row">
+
+    <div class="col-md-3">
+        <div class="white-box m-b-0 bg-danger">
+            <h3 class="text-white box-title">'+ data.data.symbol +'
+                <span class="pull-right">
+                    <i class="fa fa-caret-down"></i>'+percent+'%
+                </span>
+            </h3>
+        </div>
+    </div>
+
+    <div class="col-md-9">
+        <div class="col-sm-3">
+            <h3>Predicted Score</h3>
+            <h4>+ data.data.pnifty_score[29] +</h4>
+        </div>
+        <div class="col-sm-3">
+            <h3>Sentiment Score</h3>
+            <h4>+ data.data.ss +</h4>
+        </div>
+        <a href="/detail/data.symbol/">
+            <div class="col-sm-3 text-center" style="border: 1px solid black;">
+                <h3>View Details</h3>
+            </div>
+        </a>
+    </div>
+
+</div> -->
+
+
 <div class="row" id="haha">
     <!-- <div class="col-md-4 col-xs-12 col-sm-6">
         <div class="white-box m-b-0 bg-danger">
@@ -185,12 +218,15 @@
                         percent = Number((percent).toFixed(2))
                         console.log(percent)
 
+                        var num = Number((data.data.pnifty_price[29]).toFixed(2))
+
                         var row = document.getElementById('haha')
                         var insertingElement = document.createElement('div')
                         if(percent<0){
-                            insertingElement.innerHTML = '<div class="col-md-4 col-xs-12 col-sm-6"><div class="white-box m-b-0 bg-danger"><h3 class="text-white box-title">'+ data.data.symbol +'<span class="pull-right"><i class="fa fa-caret-down"></i>'+percent+'%</span></h3></div></div><div class="col-md-8 col-sm-12 col-xs-12"><div class="white-box border-gray"><h3 class="box-title"><small class="pull-right m-t-10 text-success"><i class="fa fa-sort-asc"></i> 18% High then last month</small>Site Traffic</h3><div class="stats-row"><div class="stat-item"><h6>Overall Growth</h6><b>40.40%</b></div><div class="stat-item"><h6>Montly</h6> <b>55.40%</b></div><div class="stat-item"><h6>Day</h6><b>4.50%</b></div></div></div></div>'
+                            percent = percent * -1
+                            insertingElement.innerHTML = '<div class="row"> <div class="col-md-4"> <div class="white-box m-b-0 bg-danger"> <h3 class="text-white box-title">'+ data.data.symbol +' <span class="pull-right"> <i class="fa fa-caret-down"></i>'+percent+'% </span> </h3> </div> </div> <div class="col-md-8"> <div class="col-sm-3"> <h3>Predicted Score</h3> <h4>'+ num +'</h4> </div> <div class="col-sm-3"> <h3>Sentiment Score</h3> <h4>'+ data.data.ss +'</h4> </div> <a href="/detail/'+data.data.symbol+'/"> <div class="col-sm-2 text-center" style="border: 1px solid black;"> <h3>View Details</h3> </div> </a> </div> </div>'
                         }else{
-                            insertingElement.innerHTML = '<div class="col-md-4 col-xs-12 col-sm-6"><div class="white-box m-b-0 bg-success"><h3 class="text-white box-title">'+ data.data.symbol +'<span class="pull-right"><i class="fa fa-caret-up"></i>'+percent+'%</span></h3></div></div><div class="col-md-8 col-sm-12 col-xs-12"><div class="white-box border-gray"><h3 class="box-title"><small class="pull-right m-t-10 text-success"><i class="fa fa-sort-asc"></i> 18% High then last month</small>Site Traffic</h3><div class="stats-row"><div class="stat-item"><h6>Overall Growth</h6><b>40.40%</b></div><div class="stat-item"><h6>Montly</h6> <b>55.40%</b></div><div class="stat-item"><h6>Day</h6><b>4.50%</b></div></div></div></div>'   
+                            insertingElement.innerHTML = '<div class="row"> <div class="col-md-4"> <div class="white-box m-b-0 bg-success"> <h3 class="text-white box-title">'+ data.data.symbol +' <span class="pull-right"> <i class="fa fa-caret-up"></i>'+percent+'% </span> </h3> </div> </div> <div class="col-md-8"> <div class="col-sm-3"> <h3>Predicted Score</h3> <h4>'+ num +'</h4> </div> <div class="col-sm-3"> <h3>Sentiment Score</h3> <h4>'+ data.data.ss +'</h4> </div> <a href="/detail/'+data.data.symbol+'/"> <div class="col-sm-2 text-center" style="border: 1px solid black;"> <h3>View Details</h3> </div> </a> </div> </div>'   
                         }
                         
                         row.appendChild(insertingElement)
