@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth import login as auth_login
 from django.http import HttpResponse
-from nasdaq_stock_quote import Share
+# from nasdaq_stock_quote import Share
 import requests
 import json
 import datetime
@@ -477,9 +477,21 @@ def add_stock(request):
 
 	return JsonResponse({'data':json_data})
 
-
 def learn(request):
 	return render(request,"learn.html")
+
+def news(request):
+	description=[]
+	title=[]
+	url=[]
+	urltoimg=[]
+	news = requests.get('https://newsapi.org/v1/articles?source=cnbc&sortBy=top&apiKey=e469736fcf9c4b22bf6c50657ea1e9a8')
+	news = news.json()
+	articles = news['articles']
+	# print articles
+
+	return render(request,"news.html",{'articles' : articles})
+
 
 
 def detail(request,p):
