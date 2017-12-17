@@ -207,6 +207,21 @@ def add_stock(request):
 	return JsonResponse({'data':json_data})
 
 
+def news(request):
+	description=[]
+	title=[]
+	url=[]
+	urltoimg=[]
+	news = requests.get('https://newsapi.org/v1/articles?source=cnbc&sortBy=top&apiKey=e469736fcf9c4b22bf6c50657ea1e9a8')
+	news = news.json()
+	articles = news['articles']
+	print articles
+
+	return render(request,"news.html",{'articles' : articles})
+	
+
+
+
 
 @csrf_exempt
 def respond_chat(request):
