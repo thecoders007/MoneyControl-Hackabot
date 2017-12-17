@@ -94,6 +94,7 @@ hr { display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin:
     // console.log({{nifty_date}})
 
     var price = {{ nifty_price }}
+    price.reverse()
     var date = unescape("{{ nifty_date | safe | escapejs }}")
     date = JSON.parse(date)
     date.reverse()

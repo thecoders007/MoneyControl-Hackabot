@@ -13,5 +13,7 @@ urlpatterns = [
     url(r'^add-stock/$', views.add_stock),
     url(r'^response/$', views.respond_chat),
     url(r'^news/$', views.news),
+    url(r'^detail/(?P<p>[\w\-\_]+)/$',views.detail),
+
 
 ]

@@ -218,6 +218,37 @@ def news(request):
 	print articles
 
 	return render(request,"news.html",{'articles' : articles})
+
+
+def detail(request,p):
+	
+	r = requests.get('https://www.quandl.com/api/v3/datasets/NSE/'+p+'.json?api_key=oqf4vFLPo8MrPBGXVjki')
+	nifty = r.json()
+
+
+	nifty_price = []
+	nifty_date = []
+
+	count = 0
+	print nifty
+	for i in nifty['dataset']['data']:
+
+		nifty_date.append(i[0])	
+		nifty_price.append(i[1])
+
+		if count == 30:
+			break
+		else:
+			count = count + 1
+
+	nifty_date = json.dumps(nifty_date)
+	print nifty_date
+	print nifty_price
+
+	return render(request,"detail.html",{'nifty_date' : nifty_date , 'nifty_price' : nifty_price, 'p' : p})
+
+
+
 	
 
 
