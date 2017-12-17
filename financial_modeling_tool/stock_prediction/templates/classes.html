@@ -9,8 +9,13 @@
     <div class="col-md-4 col-sm-12 col-xs-12">
         <div class="white-box border-gray">
             <h3 class="box-title">
-                <small class="pull-right m-t-10 text-success">
-                    <!-- <i class="fa fa-sort-asc"></i> --> {{b}} </small> {{a}}</h3>
+                 {% if b > e %}
+                <large class="pull-right m-t-10 text-success">
+                    <i class="fa fa-sort-asc"></i> {{b}} </large> {{a}}</h3>
+                    {% else %}
+                    <large class="pull-right m-t-10 text-danger">
+                    <i class="fa fa-sort-desc"></i> {{b}} </large> {{a}}</h3>
+                    {% endif %}
             <div class="stats-row">
                 <div class="stat-item">
                     <h6>Day High</h6>

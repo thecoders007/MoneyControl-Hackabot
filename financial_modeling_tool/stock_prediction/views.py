@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth import login as auth_login
 from django.http import HttpResponse
-from nasdaq_stock_quote import Share
+# from nasdaq_stock_quote import Share
 import requests
 import json
 from django.http import JsonResponse
@@ -462,7 +462,7 @@ def news(request):
 	news = requests.get('https://newsapi.org/v1/articles?source=cnbc&sortBy=top&apiKey=e469736fcf9c4b22bf6c50657ea1e9a8')
 	news = news.json()
 	articles = news['articles']
-	print articles
+	# print articles
 
 	return render(request,"news.html",{'articles' : articles})
 
@@ -477,7 +477,7 @@ def detail(request,p):
 	nifty_date = []
 
 	count = 0
-	print nifty
+	# print nifty
 	for i in nifty['dataset']['data']:
 
 		nifty_date.append(i[0])	
@@ -489,8 +489,8 @@ def detail(request,p):
 			count = count + 1
 
 	nifty_date = json.dumps(nifty_date)
-	print nifty_date
-	print nifty_price
+	# print nifty_date
+	# print nifty_price
 
 	return render(request,"detail.html",{'nifty_date' : nifty_date , 'nifty_price' : nifty_price, 'p' : p})
 
