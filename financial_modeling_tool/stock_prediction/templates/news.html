@@ -1,0 +1,81 @@
+{% extends 'base.html' %} {% load static %} {% block body_block %}
+<!-- google font -->
+<style type="text/css" media="screen">
+hr { display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin: 1em 0; padding: 0; }  
+.news{
+      width: 300px;
+      height:150px;
+    }
+    .thumbnail,.caption{
+      height: 350px;
+    }
+    .heading1 {
+    border-bottom: 1px solid #aaa;
+}  
+</style>
+
+
+<!-- icons -->
+<link href="js/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
+<link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet" type="text/css" />
+
+<!--bootstrap -->
+<link href="{% static 'js/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'js/bootstrap-switch/css/bootstrap-switch.min.css' %}" rel="stylesheet" type="text/css" />
+
+<!-- morris chart -->
+<link href="{% static 'js/morris/morris.css' %}" rel="stylesheet" type="text/css" />
+
+<!-- Theme Styles -->
+<link href="{% static 'css/theme_style.css' %}" rel="stylesheet" id="rt_style_components" type="text/css" />
+<link href="{% static 'css/plugins.min.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'css/responsive.css' %}" rel="stylesheet" type="text/css" />
+<!-- favicon -->
+<link rel="shortcut icon" href="img/favicon.ico" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min.js"></script>
+<div class="row">
+    <!-- <div class="col-md-offset-2 col-md-10">
+        <canvas id="myChart"></canvas>
+    </div> -->
+    <div>
+        <div class="card card-topline-aqua">
+            <div class="row">
+              <div class="col-md-12">
+                
+                  <div class="x_content">
+                      <div class="section-title">
+                        <h1 class="heading1">
+                          NEWS
+                        </h1>
+                        <br />
+
+                      </div>
+                    <div class="row">
+
+                      
+                      {% for items in articles %}
+                      <div class="col-md-4">
+                        <div class="thumbnail">
+                          <div class="image view view-first">
+                            <img style="width: 100%; display: block;" class="news" src="{{items.urlToImage}}" alt="image" />
+                            
+                          </div>
+                          <div class="caption">
+                            <a href="{{items.url}}"><h3>{{items.title}}</h3></a>
+                            <p>{{items.description}} </p>
+                          </div>
+                        </div>
+                      </div>
+                      {% endfor %}
+                  
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
